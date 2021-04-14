@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HorseController;
+use App\Http\Controllers\BetterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,14 @@ Route::group(['prefix' => 'horses'], function(){
     Route::post('update/{horse}', [HorseController::class, 'update'])->name('horse.update');
     Route::post('delete/{horse}', [HorseController::class, 'destroy'])->name('horse.destroy');
     Route::get('show/{horse}', [HorseController::class, 'show'])->name('horse.show');
+ });
+
+ Route::group(['prefix' => 'betters'], function(){
+    Route::get('', [BetterController::class, 'index'])->name('better.index');
+    Route::get('create', [BetterController::class, 'create'])->name('better.create');
+    Route::post('store', [BetterController::class, 'store'])->name('better.store');
+    Route::get('edit/{better}', [BetterController::class, 'edit'])->name('better.edit');
+    Route::post('update/{better}', [BetterController::class, 'update'])->name('better.update');
+    Route::post('delete/{better}', [BetterController::class, 'destroy'])->name('better.destroy');
+    Route::get('show/{better}', [BetterController::class, 'show'])->name('better.show');
  });

@@ -10942,4 +10942,60 @@ a.text-dark:focus {
   }
 }
 
+.list-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-line__buttons {
+  display: flex;
+}
+
+.list-line__buttons > * {
+  margin: 5px;
+}
+
+.list-line__betters {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-line__betters__title {
+  font-weight: bold;
+}
+
+.list-line__betters__horse {
+  color: grey;
+  font-size: 80%;
+  font-style: italic;
+}
+
+.make-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.make-inline.column {
+  flex-direction: column;
+  height: 37px;
+  justify-content: center;
+  margin: 0 12px;
+}
+
+.make-inline select,
+.make-inline label,
+.make-inline input {
+  margin: 0 6px;
+}
+
+.make-inline .form-group {
+  margin-bottom: 0;
+}
+
+.a-padding-right {
+  padding-right: 15px;
+}
+
 

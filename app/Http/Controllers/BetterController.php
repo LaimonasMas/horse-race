@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Better;
 use Illuminate\Http\Request;
+use App\Models\Horse;
+
 
 class BetterController extends Controller
 {
@@ -12,9 +14,23 @@ class BetterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $horses = Horse::orderBy('name')->get();
+        $betters = Better::orderBy('name')->get();
+        if ($request->horse_id) {
+            $betters = Better::where('horse_id', $request->horse_id)->get();
+            $filterBy = $request->horse_id;
+        }
+        else {
+            $betters = Better::orderBy('bet', 'desc')->get();
+        }
+
+        return view('better.index', [
+            'betters' => $betters,
+            'horses' => $horses,
+            'filterBy' => $filterBy ?? 0,
+            ]);
     }
 
     /**
@@ -24,7 +40,8 @@ class BetterController extends Controller
      */
     public function create()
     {
-        //
+        $horses = Horse::orderBy('name')->get();
+        return view('better.create', ['horses' => $horses]);
     }
 
     /**
@@ -35,7 +52,13 @@ class BetterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $better = new Better;
+        $better->name = $request->better_name;
+        $better->surname = $request->better_surname;
+        $better->bet = $request->better_bet;
+        $better->horse_id = $request->horse_id;
+        $better->save();
+        return redirect()->route('better.index')->with('success_message', 'Created successfully!');
     }
 
     /**
@@ -57,7 +80,8 @@ class BetterController extends Controller
      */
     public function edit(Better $better)
     {
-        //
+        $horses = Horse::orderBy('name')->get();
+        return view('better.edit', ['better' => $better, 'horses' => $horses]);
     }
 
     /**
@@ -69,7 +93,12 @@ class BetterController extends Controller
      */
     public function update(Request $request, Better $better)
     {
-        //
+        $better->name = $request->better_name;
+        $better->surname = $request->better_surname;
+        $better->bet = $request->better_bet;
+        $better->horse_id = $request->horse_id;
+        $better->save();
+        return redirect()->route('better.index')->with('success_message', 'Updated successfully!');
     }
 
     /**
@@ -80,6 +109,7 @@ class BetterController extends Controller
      */
     public function destroy(Better $better)
     {
-        //
+        $better->delete();
+        return redirect()->route('better.index')->with('success_message', 'Deleted successfully!');
     }
 }

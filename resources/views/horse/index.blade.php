@@ -5,7 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">horses List</div>
+                <div class="card-header">
+                <h2>Horses List</h2>
+                </div>
 
                 <div class="card-body">
 

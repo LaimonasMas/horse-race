@@ -81,7 +81,7 @@ class HorseController extends Controller
         $horse->wins = $request->horse_wins;
         $horse->about = $request->horse_about;
         $horse->save();
-        return redirect()->route('horse.index')->with('success_message', 'Created successfully!');
+        return redirect()->route('horse.index')->with('success_message', 'Updated successfully!');
     }
 
     /**
@@ -92,6 +92,9 @@ class HorseController extends Controller
      */
     public function destroy(Horse $horse)
     {
+        if ($horse->horseBetters->count()) {
+            return redirect()->route('horse.index')->with('info_message', 'Cannot delete this horse, because some betters has placed bets on it!');
+        }
         $horse->delete();
         return redirect()->route('horse.index')->with('success_message', 'Deleted successfully!');
     }

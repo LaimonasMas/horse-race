@@ -10998,4 +10998,12 @@ a.text-dark:focus {
   padding-right: 15px;
 }
 
+.card-header {
+  background-image: linear-gradient(180deg, #C0C0C0, white);
+}
+
+.card-body {
+  background-image: linear-gradient(180deg, white, #C0C0C0);
+}
+
 

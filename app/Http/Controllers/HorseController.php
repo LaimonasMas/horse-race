@@ -44,7 +44,7 @@ class HorseController extends Controller
                 'horse_name' => ['required', 'regex:/^[\'a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ\s-]*$/', 'min:3', 'max:100'],
                 'horse_runs' => ['required', 'numeric', 'min:1', 'max:9999'],
                 'horse_wins' => ['required', 'numeric', 'lte:horse_runs', 'min:1', 'max:9999'],
-                'horse_about' => ['required', 'regex:/^[\'a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ\s\d-]*$/', 'min:3', 'max:500']
+                'horse_about' => ['required', 'regex:/^[\',.!?a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ\s\d-]*$/', 'min:3', 'max:500']
             ]
         );
         if ($validator->fails()) {

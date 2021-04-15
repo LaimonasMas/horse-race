@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Horse;
 use Illuminate\Http\Request;
+use Validator;
 
 class HorseController extends Controller
 {
@@ -36,6 +37,22 @@ class HorseController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'horse_name' => ['required', 'regex:/^[\'a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ\s-]*$/', 'min:3', 'max:100'],
+                'horse_runs' => ['required', 'numeric', 'min:1', 'max:9999'],
+                'horse_wins' => ['required', 'numeric', 'lte:horse_runs', 'min:1', 'max:9999'],
+                'horse_about' => ['required', 'regex:/^[\'a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ\s\d-]*$/', 'min:3', 'max:500']
+            ]
+        );
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
+
+
         $horse = new Horse;
         $horse->name = $request->horse_name;
         $horse->runs = $request->horse_runs;
@@ -76,6 +93,21 @@ class HorseController extends Controller
      */
     public function update(Request $request, Horse $horse)
     {
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'horse_name' => ['required', 'regex:/^[\'a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ\s-]*$/', 'min:3', 'max:100'],
+                'horse_runs' => ['required', 'numeric', 'min:1', 'max:9999'],
+                'horse_wins' => ['required', 'numeric', 'lte:horse_runs', 'min:1', 'max:9999'],
+                'horse_about' => ['required', 'regex:/^[\',.!?a-zA-ZąčęėįšųūžĄČĘĖĮŠŲŪŽ\s\d-]*$/', 'min:3', 'max:500']
+            ]
+        );
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
+
         $horse->name = $request->horse_name;
         $horse->runs = $request->horse_runs;
         $horse->wins = $request->horse_wins;

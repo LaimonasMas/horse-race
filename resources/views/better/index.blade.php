@@ -27,34 +27,34 @@
                         <a href="{{route('better.index')}}" class="btn btn-outline-secondary btn-sm">Clear</a>
                     </div>
                     {{-- filtravimo ppabaiga --}}
+                </div>
 
 
 
+                <div class="card-body">
 
-                    <div class="card-body">
-
-                        @foreach ($betters as $better)
-                        <li class="list-group-item list-line">
-                            <div>
-                                <h4>Better: {{$better->name}} {{$better->surname}}</h4>
-                                <h5>Bet: {{$better->bet}}</h5>
-                                <h5>Horse: {{$better->betterHorse->name}}</h5>
+                    @foreach ($betters as $better)
+                    <li class="list-group-item list-line">
+                        <div>
+                            <h4>Better: {{$better->name}} {{$better->surname}}</h4>
+                            <h5>Bet: {{$better->bet}}</h5>
+                            <h5>Horse: {{$better->betterHorse->name}}</h5>
+                        </div>
+                        <div class="list-line__buttons">
+                            <div class="form-group">
+                                <a class="btn btn-outline-secondary btn-sm" href="{{route('better.edit',[$better])}}">EDIT</a>
                             </div>
-                            <div class="list-line__buttons">
-                                <div class="form-group">
-                                    <a class="btn btn-outline-secondary btn-sm" href="{{route('better.edit',[$better])}}">EDIT</a>
-                                </div>
-                                <form method="POST" action="{{route('better.destroy', [$better])}}">
-                                    @csrf
-                                    <button type="submit" class="btn btn-outline-danger btn-sm">DELETE</button>
-                                </form>
-                            </div>
-                        </li>
-                        @endforeach
+                            <form method="POST" action="{{route('better.destroy', [$better])}}">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-danger btn-sm">DELETE</button>
+                            </form>
+                        </div>
+                    </li>
+                    @endforeach
 
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-    @endsection
+</div>
+@endsection

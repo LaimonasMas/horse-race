@@ -25,10 +25,10 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body style='
-background-image: url("https://www.usracing.com/news/wp-content/uploads/2020/06/USR-Genericc-photo-e1592032352443.jpeg"); 
+background-image: url("https://media.giphy.com/media/iihelqgZeARoMtS1IQ/giphy.gif"); 
 background-repeat: no-repeat; 
 background-attachment: fixed; 
-background-size: 100vw;'>
+background-size: cover'>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
